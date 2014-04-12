@@ -1,6 +1,7 @@
 package org.kjg.garderobe;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.kjg.garderobe.NavigationDrawer.DrawerEntryAdapter;
 import org.kjg.garderobe.NavigationDrawer.EntryItem;
@@ -14,8 +15,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,7 +32,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements
+		OnSharedPreferenceChangeListener {
 	private final boolean D = true;
 	private final String TAG = "Main";
 
@@ -40,6 +45,7 @@ public class MainActivity extends Activity {
 	private DrawerEntryAdapter drawerAdapter;
 
 	private final String KEY_FRAGMENT = "fragment";
+	public static final String KEY_PREF_LOCALE = "locale";
 
 	// private final String KEY_PARTY = "selected_party";
 
@@ -83,6 +89,25 @@ public class MainActivity extends Activity {
 
 		if (D)
 			Log.i(TAG, "***Begin-OnCreate***");
+
+		getPreferences(MODE_PRIVATE).registerOnSharedPreferenceChangeListener(
+				this);
+
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		String locale = prefs.getString(KEY_PREF_LOCALE, "DEFAULT");
+
+		if (locale != null && !locale.equals("DEFAULT")) {
+			// Set locale
+			Locale l = new Locale(locale);
+			Locale.setDefault(l);
+			Configuration config = new Configuration();
+			config.locale = l;
+			getBaseContext().getResources().updateConfiguration(config,
+					getBaseContext().getResources().getDisplayMetrics());
+			if (D)
+				Log.i(TAG, "Set locale to '" + locale + "'");
+		}
 
 		// Navigation drawer
 		this.drawerListView = (ListView) findViewById(R.id.drawer_listview);
@@ -134,12 +159,14 @@ public class MainActivity extends Activity {
 					startChecklistActivity();
 					break;
 				case 9: // settings
+					f = null;
+					settingsClicked();
 					break;
 				}
 
 				if (f != null) {
 					if (D)
-						Log.i(TAG, "Fragment change :"
+						Log.i(TAG, "Fragment change: "
 								+ f.getClass().toString());
 
 					FragmentManager fm = getFragmentManager();
@@ -196,6 +223,20 @@ public class MainActivity extends Activity {
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+		getPreferences(MODE_PRIVATE).registerOnSharedPreferenceChangeListener(
+				this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		getPreferences(MODE_PRIVATE)
+				.unregisterOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
@@ -216,7 +257,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -228,7 +269,20 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void startChecklistActivity() {
+	public void settingsClicked() {
+		FragmentManager fm = getFragmentManager();
+		fm.beginTransaction()
+				.setCustomAnimations(R.animator.slide_in_left,
+						R.animator.slide_out_right, R.animator.slide_in_right,
+						R.animator.slide_out_left)
+				.replace(R.id.frame_container, new SettingsFragment(),
+						KEY_FRAGMENT).addToBackStack(null).commit();
+
+		if (D)
+			Log.i(TAG, "Fragment Change: Settings");
+	}
+
+	public void startChecklistActivity() {
 		Intent i = new Intent(this, ChecklistActivity.class);
 		this.startActivity(i);
 	}
@@ -252,5 +306,30 @@ public class MainActivity extends Activity {
 		a.add(new EntryItem(getString(R.string.drawer_item_settings)));
 
 		return a;
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
+		if (D)
+			Log.i(TAG, "Preferences Changed! Key: '" + key + "'");
+		if (key.equals(KEY_PREF_LOCALE)) {
+
+			SharedPreferences prefs = PreferenceManager
+					.getDefaultSharedPreferences(this);
+			String locale = prefs.getString(KEY_PREF_LOCALE, "DEFAULT");
+
+			if (locale != null && !locale.equals("DEFAULT")) {
+				// Set locale
+				Locale l = new Locale(locale);
+				Locale.setDefault(l);
+				Configuration config = new Configuration();
+				config.locale = l;
+				getBaseContext().getResources().updateConfiguration(config,
+						getBaseContext().getResources().getDisplayMetrics());
+				if (D)
+					Log.i(TAG, "Set locale to '" + locale + "'");
+			}
+		}
+
 	}
 }

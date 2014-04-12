@@ -79,7 +79,22 @@
     <string name="empty_list_numbers">No numbers</string>
     <string name="empty_list_bags">No bags</string>
     <string name="empty_list_checklist">Nothing to check</string>
+    <string name="pref_locale_cat_title">Localization</string>
+    <string name="pref_locale_cat_summary">Localization options</string>
+    <string name="pref_language_title">Language</string>
+    <string name="pref_language_summary">Interface language</string>
+    <string name="restarting">Restarting&#8230;</string>
 
+    <string-array name="pref_entries_language">
+        <item>System default</item>
+        <item>English</item>
+        <item>German</item>
+    </string-array>
+    <string-array name="pref_values_language">
+        <item>DEFAULT</item>
+        <item>en</item>
+        <item>de</item>
+    </string-array>
     <string-array name="entries_sp_shift_count">
         <item>1</item>
         <item>2</item>

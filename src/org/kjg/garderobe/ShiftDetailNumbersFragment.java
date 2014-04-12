@@ -199,6 +199,7 @@ public class ShiftDetailNumbersFragment extends Fragment {
 			this.startActivityForResult(i, AddNumbagActivity.GET_NUMBER);
 			return true;
 		case R.id.action_settings:
+			((MainActivity) getActivity()).settingsClicked();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class ScheduleFragment extends Fragment {
-	private final boolean D = true;
+	private final boolean D = false;
 	private final String TAG = "ScheduleFragment";
 
 	private ListView lvw_shifts;
@@ -156,6 +156,7 @@ public class ScheduleFragment extends Fragment {
 			alert.show();
 			return true;
 		case R.id.action_settings: // settings
+			((MainActivity) getActivity()).settingsClicked();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

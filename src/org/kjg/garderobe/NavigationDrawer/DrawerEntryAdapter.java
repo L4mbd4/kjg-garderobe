@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class DrawerEntryAdapter extends ArrayAdapter<ListItem> {
 
-	private final boolean D = true;
+	private final boolean D = false;
 	private final String TAG = "DrawerAdapter";
 
 	private final Context context;

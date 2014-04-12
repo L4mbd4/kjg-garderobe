@@ -161,7 +161,7 @@ public class ShiftDetailMembersFragment extends Fragment {
 			showAddMemberDialog();
 			return true;
 		case R.id.action_settings: // settings
-
+			((MainActivity) getActivity()).settingsClicked();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

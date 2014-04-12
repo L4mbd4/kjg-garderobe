@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="@string/pref_locale_cat_summary"
+        android:title="@string/pref_locale_cat_title" >
+        <ListPreference
+            android:entries="@array/pref_entries_language"
+            android:entryValues="@array/pref_values_language"
+            android:key="locale"
+            android:summary="@string/pref_language_summary"
+            android:title="@string/pref_language_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

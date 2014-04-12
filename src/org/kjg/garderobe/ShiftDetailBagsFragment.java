@@ -194,6 +194,7 @@ public class ShiftDetailBagsFragment extends Fragment {
 			this.startActivityForResult(i, AddNumbagActivity.GET_BAG);
 			return true;
 		case R.id.action_settings:
+			((MainActivity) getActivity()).settingsClicked();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

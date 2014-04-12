@@ -70,7 +70,8 @@ public class ScheduleFragment extends Fragment {
 				FragmentTransaction ft = getFragmentManager()
 						.beginTransaction();
 				ft.setCustomAnimations(R.animator.slide_in_left,
-						R.animator.slide_out_right, 0, 0)
+						R.animator.slide_out_right, R.animator.slide_in_right,
+						R.animator.slide_out_left)
 						.replace(R.id.frame_container, f).addToBackStack(null)
 						.commit();
 

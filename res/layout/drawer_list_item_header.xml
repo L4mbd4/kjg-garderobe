@@ -4,9 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include
+    <TextView
         android:id="@+id/drawer_list_item_header_text"
-        layout="@android:layout/preference_category" >
-    </include>
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#757678"
+        android:textColor="#fff"
+        android:textSize="15sp" />
 
 </LinearLayout>

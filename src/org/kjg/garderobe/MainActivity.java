@@ -110,30 +110,30 @@ public class MainActivity extends Activity {
 				Fragment f = null;
 
 				switch (position) {
-				case 2: // schedule
+				case 3: // schedule
 					if (getCurrentParty() != null) {
 						f = new ScheduleFragment();
 					}
 					break;
-				case 3: // numbers
+				case 4: // numbers
 					if (getCurrentParty() != null) {
 						f = new NumbersFragment();
 					}
 					break;
-				case 4: // bags
+				case 5: // bags
 					if (getCurrentParty() != null) {
 						f = new BagsFragment();
 					}
 					break;
-				case 6: // new party
+				case 7: // new party
 					f = new NewPartyFragment();
 					break;
 
-				case 7:// ChecklistActivity
+				case 8:// ChecklistActivity
 					f = null;
 					startChecklistActivity();
 					break;
-				case 8: // settings
+				case 9: // settings
 					break;
 				}
 
@@ -145,7 +145,9 @@ public class MainActivity extends Activity {
 					FragmentManager fm = getFragmentManager();
 					fm.beginTransaction()
 							.setCustomAnimations(R.animator.slide_in_left,
-									R.animator.slide_out_right, 0, 0)
+									R.animator.slide_out_right,
+									R.animator.slide_in_right,
+									R.animator.slide_out_left)
 							.replace(R.id.frame_container, f, KEY_FRAGMENT)
 							.addToBackStack(null).commit();
 				}
@@ -236,6 +238,7 @@ public class MainActivity extends Activity {
 			Log.i(TAG, "Populate drawer");
 
 		ArrayList<ListItem> a = new ArrayList<ListItem>();
+		a.add(new HeaderItem(getString(R.string.drawer_header_party)));
 		a.add(new SpinnerItem());
 
 		a.add(new HeaderItem(getString(R.string.drawer_header_view)));

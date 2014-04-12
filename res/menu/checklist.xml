@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.kjg.garderobe.ChecklistActivity" >
+
+    <item
+        android:id="@+id/action_add_check_item"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_add_check_item"/>
+    <item
+        android:id="@+id/action_remove_check_item"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_remove_check_item_activated"/>
+    <item
+        android:id="@+id/action_reset_check_items"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_reset_check_items"/>
+
+</menu>

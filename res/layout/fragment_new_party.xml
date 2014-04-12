@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/txt_party_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/hint_txt_party_name"
+        android:singleLine="true"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btn_party_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_party_name"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:text="@string/text_btn_party_start" />
+
+    <Button
+        android:id="@+id/btn_party_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_party_start"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:text="@string/text_btn_party_date" />
+
+    <TextView
+        android:id="@+id/tvw_shift_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_party_date"
+        android:layout_marginTop="5dp"
+        android:text="@string/text_tvw_shift_count"
+        android:textSize="15sp" />
+
+    <Spinner
+        android:id="@+id/sp_shift_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvw_shift_count"
+        android:entries="@array/entries_sp_shift_count"
+        android:prompt="@string/prompt_sp_shift_count"
+        android:spinnerMode="dialog" />
+
+    <TextView
+        android:id="@+id/tvw_shift_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sp_shift_count"
+        android:layout_marginTop="5dp"
+        android:text="@string/text_tvw_shift_length"
+        android:textSize="15sp" />
+
+    <Spinner
+        android:id="@+id/sp_shift_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvw_shift_length"
+        android:entries="@array/entries_sp_shift_length"
+        android:spinnerMode="dropdown" />
+
+    <LinearLayout
+        style="android:attr/buttonBarStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_new_party_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="@string/text_btn_new_party_cancel" />
+
+        <Button
+            android:id="@+id/btn_create_new_party"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="@string/text_btn_create_new_party" />
+    </LinearLayout>
+
+</RelativeLayout>

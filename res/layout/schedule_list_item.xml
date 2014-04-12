@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_schedule_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4C68838B" >
+
+    <TextView
+        android:id="@+id/tvw_schedule_item_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:text="@string/text_tvw_schedule_item_number"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:typeface="serif" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvw_schedule_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tvw_schedule_item_number"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/ivw_schedule_item_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tvw_schedule_item_time"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/contentDesc_ivw_schedule_item_status" />
+
+    <TextView
+        android:id="@+id/tvw_schedule_item_members_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvw_schedule_item_time"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/text_tvw_schedule_item_members_header" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvw_schedule_item_members"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvw_schedule_item_members_header"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="25dp"
+        android:maxWidth="200dp" />
+
+</RelativeLayout>

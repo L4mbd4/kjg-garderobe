@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">KJG Garderobe</string>
+    <string name="title_activity_add_number">Neue Nummer</string>
+    <string name="title_activity_add_bag">Neuer Sack</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="drawer_header_view">Ansicht</string>
+    <string name="drawer_header_management">Verwaltung</string>
+    <string name="drawer_item_settings">Einstellungen</string>
+    <string name="drawer_item_schedule">Schichtplan</string>
+    <string name="drawer_item_numbers">Nummern</string>
+    <string name="drawer_item_bags">Säcke</string>
+    <string name="drawer_item_newparty">Neue Party</string>
+    <string name="drawer_open">Navigation öffnen</string>
+    <string name="drawer_close">Navigation schließen</string>
+    <string name="hint_txt_party_name">Party Name</string>
+    <string name="text_btn_party_date">Datum wählen</string>
+    <string name="prompt_sp_shift_count">Schicht-Anzahl</string>
+    <string name="prompt_sp_add_numbag_reason">Grund wählen</string>
+    <string name="text_tvw_shift_count">Anzahl der Schichten :</string>
+    <string name="text_btn_create_new_party">Erstellen</string>
+    <string name="text_btn_party_start">Partybeginn</string>
+    <string name="text_tvw_shift_length">Schichtlänge :</string>
+    <string name="text_tvw_schedule_item_number"><u>Schicht %s</u></string>
+    <string name="text_tvw_schedule_item_members_header">Mitglieder :</string>
+    <string name="text_btn_add_numbag_add">Hinzufügen</string>
+    <string name="text_txt_numbag_reason">Grund: %s</string>
+    <string name="text_txt_numbag_time">Zeit: %s</string>
+    <string name="text_txt_numbag_comment">Beschreibung: %s</string>
+    <string name="text_btn_add_numbag_cancel">Abbrechen</string>
+    <string name="hint_txt_add_numbag_number">Nummer</string>
+    <string name="hint_txt_add_numbag_comment">Beschreibung</string>
+    <string name="no_members">Keine Mitglieder</string>
+    <string name="shift_detail_members">Mitglieder</string>
+    <string name="shift_detail_numbers">Nummern</string>
+    <string name="shift_detail_bags">Säcke</string>
+    <string name="no_party">Keine Party</string>
+    <string name="title_new_party">Neue Party erstellen</string>
+    <string name="action_add_member">Mitglied hinzufügen</string>
+    <string name="toast_party_selected">Party %s ausgewählt</string>
+    <string name="toast_party_deleted">Party %s gelöscht</string>
+    <string name="action_delete_party">Party löschen</string>
+    <string name="action_add_number">Neue Nummer </string>
+    <string name="action_add_bag">Neuer Sack</string>
+    <string name="confirm_delete_party">Party %s wirklich löschen?</string>
+    <string name="dialog_yes">Ja</string>
+    <string name="dialog_no">Nein</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_add">Hinzugügen</string>
+    <string name="member_name">Mitgliedsname</string>
+    <string name="undo">Rückgängig</string>
+    <string name="undo_all">Alles Rückgängig</string>
+    <string name="undo_message">%s entfernt</string>
+    <string name="reason_found">Gefunden</string>
+    <string name="reason_left">Vergessen</string>
+    <string name="reason_mistake">Fehler</string>
+    <string name="reason_other">Sonstige</string>
+    <string name="reason_lost">Verloren</string>
+    <string name="reason_wrong">Falscher Inhalt</string>
+    <string name="no_comment">Keine Beschreibung</string>
+
+    <string-array name="entries_sp_shift_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="entries_sp_shift_length">
+        <item>2 Stunden</item>
+        <item>1 Stunde</item>
+        <item>30 Minuten</item>
+    </string-array>
+    <string-array name="reasons_number">
+        <item>@string/reason_found</item>
+        <item>@string/reason_left</item>
+        <item>@string/reason_mistake</item>
+        <item>@string/reason_other</item>
+    </string-array>
+    <string-array name="reasons_bag">
+        <item>@string/reason_lost</item>
+        <item>@string/reason_left</item>
+        <item>@string/reason_wrong</item>
+        <item>@string/reason_mistake</item>
+        <item>@string/reason_other</item>
+    </string-array>
+
+</resources>

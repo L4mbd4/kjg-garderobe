@@ -1,2 +1,6 @@
-kjg-garderobe
+KJG Garderobe
 =============
+
+License
+-------
+GNU GPLv3

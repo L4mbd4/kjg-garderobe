@@ -41,6 +41,7 @@ public class BagsFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_bags, container, false);
 
 		this.lvw_bags = (ListView) view.findViewById(R.id.lvw_bags);
+		this.lvw_bags.setEmptyView(view.findViewById(R.id.tvw_empty_lvw_bags));
 
 		((MainActivity) getActivity()).getActionBar().setTitle(
 				getActivity().getResources().getString(

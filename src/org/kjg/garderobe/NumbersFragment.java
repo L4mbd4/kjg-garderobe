@@ -43,6 +43,8 @@ public class NumbersFragment extends Fragment {
 				false);
 
 		this.lvw_numbers = (ListView) view.findViewById(R.id.lvw_numbers);
+		this.lvw_numbers.setEmptyView(view
+				.findViewById(R.id.tvw_empty_lvw_numbers));
 
 		((MainActivity) getActivity()).getActionBar().setTitle(
 				getActivity().getResources().getString(

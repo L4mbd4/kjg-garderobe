@@ -148,7 +148,7 @@ public class ShiftDetailMembersFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-
+		menu.clear();
 		inflater.inflate(R.menu.fragment_shift_detail_view, menu);
 	}
 

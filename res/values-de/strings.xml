@@ -7,43 +7,47 @@
     <string name="action_settings">Einstellungen</string>
     <string name="drawer_header_view">Ansicht</string>
     <string name="drawer_header_management">Verwaltung</string>
+    <string name="drawer_header_party">Party</string>
     <string name="drawer_item_settings">Einstellungen</string>
     <string name="drawer_item_schedule">Schichtplan</string>
     <string name="drawer_item_numbers">Nummern</string>
     <string name="drawer_item_bags">Säcke</string>
     <string name="drawer_item_newparty">Neue Party</string>
+    <string name="drawer_item_checklist">Checkliste</string>
     <string name="drawer_open">Navigation öffnen</string>
     <string name="drawer_close">Navigation schließen</string>
     <string name="hint_txt_party_name">Party Name</string>
-    <string name="text_btn_party_date">Datum wählen</string>
-    <string name="prompt_sp_shift_count">Schicht-Anzahl</string>
-    <string name="prompt_sp_add_numbag_reason">Grund wählen</string>
+    <string name="text_btn_party_date">Datum auswählen</string>
+    <string name="prompt_sp_shift_count">Schichtanzahl</string>
+    <string name="prompt_sp_add_numbag_reason">Grund auswählen</string>
     <string name="text_tvw_shift_count">Anzahl der Schichten :</string>
     <string name="text_btn_create_new_party">Erstellen</string>
-    <string name="text_btn_party_start">Partybeginn</string>
+    <string name="text_btn_new_party_cancel">Abbrechen</string>
+    <string name="text_btn_party_start">Party Startzeit</string>
     <string name="text_tvw_shift_length">Schichtlänge :</string>
     <string name="text_tvw_schedule_item_number"><u>Schicht %s</u></string>
     <string name="text_tvw_schedule_item_members_header">Mitglieder :</string>
     <string name="text_btn_add_numbag_add">Hinzufügen</string>
     <string name="text_txt_numbag_reason">Grund: %s</string>
     <string name="text_txt_numbag_time">Zeit: %s</string>
-    <string name="text_txt_numbag_comment">Beschreibung: %s</string>
+    <string name="text_txt_numbag_comment">Bemerkung: %s</string>
     <string name="text_btn_add_numbag_cancel">Abbrechen</string>
     <string name="hint_txt_add_numbag_number">Nummer</string>
-    <string name="hint_txt_add_numbag_comment">Beschreibung</string>
+    <string name="hint_txt_add_numbag_comment">Bemerkung</string>
     <string name="no_members">Keine Mitglieder</string>
     <string name="shift_detail_members">Mitglieder</string>
     <string name="shift_detail_numbers">Nummern</string>
     <string name="shift_detail_bags">Säcke</string>
     <string name="no_party">Keine Party</string>
-    <string name="title_new_party">Neue Party erstellen</string>
+    <string name="no_numOrBags">Keine Nummern/Säcke</string>
+    <string name="title_new_party">Neue Party</string>
     <string name="action_add_member">Mitglied hinzufügen</string>
     <string name="toast_party_selected">Party %s ausgewählt</string>
     <string name="toast_party_deleted">Party %s gelöscht</string>
     <string name="action_delete_party">Party löschen</string>
-    <string name="action_add_number">Neue Nummer </string>
-    <string name="action_add_bag">Neuer Sack</string>
-    <string name="confirm_delete_party">Party %s wirklich löschen?</string>
+    <string name="action_add_number">Nummer hinzufügen</string>
+    <string name="action_add_bag">Sack hinzufügen</string>
+    <string name="confirm_delete_party">Party %s löschen?</string>
     <string name="dialog_yes">Ja</string>
     <string name="dialog_no">Nein</string>
     <string name="dialog_cancel">Abbrechen</string>
@@ -55,11 +59,42 @@
     <string name="reason_found">Gefunden</string>
     <string name="reason_left">Vergessen</string>
     <string name="reason_mistake">Fehler</string>
-    <string name="reason_other">Sonstige</string>
+    <string name="reason_other">Sonstiges</string>
     <string name="reason_lost">Verloren</string>
     <string name="reason_wrong">Falscher Inhalt</string>
-    <string name="no_comment">Keine Beschreibung</string>
+    <string name="no_comment">Keine Bemerkung</string>
+    <string name="action_search">Suche</string>
+    <string name="action_create_party">Erstellen</string>
+    <string name="action_cancel_party">Abbrechen</string>
+    <string name="contentDesc_ivw_schedule_item_status">Status</string>
+    <string name="contentDesc_ivw_checklist_item_checked">Checked</string>
+    <string name="action_add_check_item">Hinzufügen</string>
+    <string name="action_remove_check_item_activated">Entfernen-Modus</string>
+    <string name="action_remove_check_item_deactivated">Entfernen-Modus beenden</string>
+    <string name="action_reset_check_items">Einträge zurücksetzen</string>
+    <string name="dialog_add_check_title">Neue Eintrag</string>
+    <string name="dialog_add_check_hint">Was ist zu tun?</string>
+    <string name="dummy_content_description">Content</string>
+    <string name="empty_list_members">Keine Mitglieder</string>
+    <string name="empty_list_numbers">Keine Nummern</string>
+    <string name="empty_list_bags">Keine Säcke</string>
+    <string name="empty_list_checklist">Keine Einträge</string>
+    <string name="pref_locale_cat_title">Localisierung</string>
+    <string name="pref_locale_cat_summary">Localisierungsoptionen</string>
+    <string name="pref_language_title">Sprache</string>
+    <string name="pref_language_summary">Sprache des UI</string>
+    <string name="restarting">Starte neu&#8230;</string>
 
+    <string-array name="pref_entries_language">
+        <item>System</item>
+        <item>Englisch</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array name="pref_values_language">
+        <item>DEFAULT</item>
+        <item>en</item>
+        <item>de</item>
+    </string-array>
     <string-array name="entries_sp_shift_count">
         <item>1</item>
         <item>2</item>
@@ -84,5 +119,8 @@
         <item>@string/reason_mistake</item>
         <item>@string/reason_other</item>
     </string-array>
+
+    <string name="title_activity_checklist">Checkliste</string>
+    <string name="title_activity_new_party">New Party</string>
 
 </resources>

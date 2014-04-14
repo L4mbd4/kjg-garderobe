@@ -122,6 +122,5 @@
 
     <string name="title_activity_checklist">Checklist</string>
     <string name="title_activity_new_party">New Party</string>
-    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -79,14 +79,13 @@ public final class R {
     public static final class id {
         public static final int action_add_bag=0x7f0d0036;
         public static final int action_add_check_item=0x7f0d0033;
-        public static final int action_add_member=0x7f0d003c;
+        public static final int action_add_member=0x7f0d003b;
         public static final int action_add_number=0x7f0d0039;
         public static final int action_cancel_party=0x7f0d0038;
         public static final int action_create_party=0x7f0d0037;
-        public static final int action_delete_party=0x7f0d003b;
+        public static final int action_delete_party=0x7f0d003a;
         public static final int action_remove_check_item=0x7f0d0034;
         public static final int action_reset_check_items=0x7f0d0035;
-        public static final int action_search=0x7f0d003a;
         public static final int action_settings=0x7f0d0032;
         public static final int btn_add_numbag_add=0x7f0d0005;
         public static final int btn_add_numbag_cancel=0x7f0d0004;
@@ -211,7 +210,6 @@ public final class R {
         public static final int empty_list_checklist=0x7f09004d;
         public static final int empty_list_members=0x7f09004a;
         public static final int empty_list_numbers=0x7f09004b;
-        public static final int hello_world=0x7f090055;
         public static final int hint_txt_add_numbag_comment=0x7f090020;
         public static final int hint_txt_add_numbag_number=0x7f09001f;
         public static final int hint_txt_party_name=0x7f09000f;

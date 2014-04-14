@@ -296,7 +296,7 @@ public class MainActivity extends Activity implements
 		this.startActivity(i);
 	}
 
-	private void startNewPartyActivity() {
+	public void startNewPartyActivity() {
 		Intent i = new Intent(this, NewPartyActivity.class);
 		this.startActivityForResult(i, MainActivity.REQUEST_NEWPARTY);
 	}

@@ -61,7 +61,11 @@ public class Serializer {
 			}
 		}
 
-		return c.getList();
+		if (c != null) {
+			return c.getList();
+		} else {
+			return null;
+		}
 	}
 
 	public static void serializeParty(Party p, String fileName, Context context) {

@@ -3,7 +3,6 @@ package org.kjg.garderobe.NavigationDrawer;
 import java.util.ArrayList;
 
 import org.kjg.garderobe.MainActivity;
-import org.kjg.garderobe.NewPartyFragment;
 import org.kjg.garderobe.R;
 import org.kjg.garderobe.ScheduleFragment;
 
@@ -125,12 +124,15 @@ public class DrawerEntryAdapter extends ArrayAdapter<ListItem> {
 
 		if (sp_partys.getSelectedItem().toString() == context.getResources()
 				.getString(R.string.no_party)) {
-			// no party -> new party fragment
+			// no party -> new party
 
-			FragmentTransaction ft = ((Activity) context).getFragmentManager()
-					.beginTransaction();
-			ft.replace(R.id.frame_container, new NewPartyFragment());
-			ft.commit();
+			((MainActivity) context).startNewPartyActivity();
+
+			// FragmentTransaction ft = ((Activity)
+			// context).getFragmentManager()
+			// .beginTransaction();
+			// ft.replace(R.id.frame_container, new NewPartyFragment());
+			// ft.commit();
 		} else {
 			MainActivity a = (MainActivity) context;
 
@@ -160,12 +162,15 @@ public class DrawerEntryAdapter extends ArrayAdapter<ListItem> {
 		}
 		if (partys.size() == 0) {
 			partys.add(context.getResources().getString(R.string.no_party));
-			// no party -> new party fragment
+			// no party -> new party
 
-			FragmentTransaction ft = ((Activity) context).getFragmentManager()
-					.beginTransaction();
-			ft.replace(R.id.frame_container, new NewPartyFragment());
-			ft.commit();
+			((MainActivity) context).startNewPartyActivity();
+
+			// FragmentTransaction ft = ((Activity)
+			// context).getFragmentManager()
+			// .beginTransaction();
+			// ft.replace(R.id.frame_container, new NewPartyFragment());
+			// ft.commit();
 		}
 
 		spinnerAdapter.clear();

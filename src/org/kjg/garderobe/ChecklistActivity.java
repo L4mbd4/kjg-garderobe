@@ -50,6 +50,9 @@ public class ChecklistActivity extends Activity {
 		removeMode = false;
 
 		items = Serializer.deserializeChecklist(this);
+		if (items == null) {
+			items = new ArrayList<ChecklistItem>();
+		}
 
 		if (D)
 			Log.i(TAG, "Deserialized Checklist (" + items.size() + " items)");

@@ -4,12 +4,13 @@ import java.util.Calendar;
 
 import Model.Party;
 import Model.Serializer;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -116,11 +117,14 @@ public class NewPartyFragment extends Fragment {
 
 	public void btn_cancel_Clicked(View v) {
 		if (D)
-			Log.i(TAG, "Cancelled");
+			Log.i(TAG, "Canceled");
 
-		getActivity().getFragmentManager().beginTransaction().remove(this)
-				.commit();
-		getActivity().getFragmentManager().popBackStack();
+		this.getActivity().setResult(Activity.RESULT_CANCELED, new Intent());
+		this.getActivity().finish();
+
+		// getActivity().getFragmentManager().beginTransaction().remove(this)
+		// .commit();
+		// getActivity().getFragmentManager().popBackStack();
 	}
 
 	public void btn_party_create_Clicked(View view) {
@@ -168,18 +172,24 @@ public class NewPartyFragment extends Fragment {
 			Log.i(TAG, "Serialized Party");
 
 		// update drawer party selection spinner
-		((MainActivity) getActivity()).getDrawerAdapter()
-				.updateSpinnerAdapter();
+		// ((MainActivity) getActivity()).getDrawerAdapter()
+		// .updateSpinnerAdapter();
 
 		// set new party as active
-		((MainActivity) getActivity()).setCurrentParty(p);
+		// ((MainActivity) getActivity()).setCurrentParty(p);
+
+		Intent result = new Intent();
+		result.putExtra(NewPartyActivity.KEY_PARTY, p);
+		this.getActivity().setResult(Activity.RESULT_OK, result);
 
 		if (D)
 			Log.i(TAG, "***End - Create Clicked***");
 
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.frame_container, new ScheduleFragment());
-		ft.commit();
+		this.getActivity().finish();
+
+		// FragmentTransaction ft = getFragmentManager().beginTransaction();
+		// ft.replace(R.id.frame_container, new ScheduleFragment());
+		// ft.commit();
 	}
 
 	@Override

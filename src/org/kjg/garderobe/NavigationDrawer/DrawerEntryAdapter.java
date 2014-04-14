@@ -32,24 +32,43 @@ public class DrawerEntryAdapter extends ArrayAdapter<ListItem> {
 	private final LayoutInflater li;
 
 	private Spinner sp_partys;
-	private ArrayAdapter<String> spinnerAdapter;
+	private final ArrayAdapter<String> spinnerAdapter;
 
 	public DrawerEntryAdapter(Context context, ArrayList<ListItem> items) {
 		super(context, 0, items);
 
 		if (D)
-			Log.i(TAG, "Constructor");
+			Log.i(TAG, "***Begin - Constructor***");
 
 		this.context = context;
 		this.items = items;
 		this.li = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		ArrayList<String> partys = new ArrayList<String>();
+
+		for (Party p : Serializer.getPartys(context)) {
+			partys.add(p.getName());
+		}
+
+		if (D)
+			Log.i(TAG, "Loaded " + partys.size() + " partys");
+
+		if (partys.size() == 0) {
+			partys.add(context.getResources().getString(R.string.no_party));
+		}
+
+		spinnerAdapter = new ArrayAdapter<String>(context,
+				R.layout.drawer_spinner_item, partys);
+
+		if (D)
+			Log.i(TAG, "***End - Constructor***");
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// if (D)
-		// Log.i(TAG, "getView: " + position);
+		if (D)
+			Log.i(TAG, "getView: " + position);
 
 		View v = convertView;
 		final ListItem i = items.get(position);
@@ -69,19 +88,6 @@ public class DrawerEntryAdapter extends ArrayAdapter<ListItem> {
 				v = li.inflate(R.layout.drawer_list_item_spinner, null);
 
 				sp_partys = (Spinner) v.findViewById(R.id.list_spinner_partys);
-
-				ArrayList<String> partys = new ArrayList<String>();
-
-				for (Party p : Serializer.getPartys(context)) {
-					partys.add(p.getName());
-				}
-				if (partys.size() == 0) {
-					partys.add(context.getResources().getString(
-							R.string.no_party));
-				}
-
-				spinnerAdapter = new ArrayAdapter<String>(context,
-						R.layout.drawer_spinner_item, partys);
 
 				sp_partys.setAdapter(spinnerAdapter);
 

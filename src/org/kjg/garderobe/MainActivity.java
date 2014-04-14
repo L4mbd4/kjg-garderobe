@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements
 		OnSharedPreferenceChangeListener {
-	private final boolean D = true;
+	private final boolean D = false;
 	private final String TAG = "Main";
 
 	private ListView drawerListView;
@@ -44,10 +44,8 @@ public class MainActivity extends Activity implements
 	private Party currentParty;
 	private DrawerEntryAdapter drawerAdapter;
 
-	private final String KEY_FRAGMENT = "fragment";
 	public static final String KEY_PREF_LOCALE = "locale";
-
-	// private final String KEY_PARTY = "selected_party";
+	private static final int REQUEST_NEWPARTY = 1;
 
 	public Party getCurrentParty() {
 		return currentParty;
@@ -151,7 +149,8 @@ public class MainActivity extends Activity implements
 					}
 					break;
 				case 7: // new party
-					f = new NewPartyFragment();
+					f = null;
+					startNewPartyActivity();
 					break;
 
 				case 8:// ChecklistActivity
@@ -175,7 +174,7 @@ public class MainActivity extends Activity implements
 									R.animator.slide_out_right,
 									R.animator.slide_in_right,
 									R.animator.slide_out_left)
-							.replace(R.id.frame_container, f, KEY_FRAGMENT)
+							.replace(R.id.frame_container, f)
 							.addToBackStack(null).commit();
 				}
 
@@ -184,18 +183,6 @@ public class MainActivity extends Activity implements
 			}
 
 		});
-
-		// if (savedInstanceState != null) {
-		// Log.i("Load", KEY_FRAGMENT);
-		//
-		// FragmentManager fm = this.getFragmentManager();
-		// Fragment f = fm.findFragmentByTag(KEY_FRAGMENT);
-		//
-		// Log.i(TAG, "F == null: " + String.valueOf(f == null));
-		//
-		// fm.beginTransaction()
-		// .replace(R.id.frame_container, f, KEY_FRAGMENT).commit();
-		// }
 
 		if (D)
 			Log.i(TAG, "***End-OnCreate***");
@@ -214,12 +201,10 @@ public class MainActivity extends Activity implements
 		// Always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(savedInstanceState);
 		if (D)
-			Log.i(TAG, "***OnSaveInstanceState***");
-		// Save the current state
+			Log.i(TAG, "***Begin - OnSaveInstanceState***");
 
-		// Log.i("Save", currentFragmentTag);
-		// savedInstanceState.putSerializable(this.KEY_PARTY,
-		// currentFragmentTag);
+		if (D)
+			Log.i(TAG, "***End - OnSaveInstanceState");
 	}
 
 	@Override
@@ -241,17 +226,23 @@ public class MainActivity extends Activity implements
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		if (D)
-			Log.i(TAG, "***OnPostCreate***");
+			Log.i(TAG, "***Begin - OnPostCreate***");
 		drawerToggle.syncState();
+
+		if (D)
+			Log.i(TAG, "***End - OnPostCreate***");
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
+		// super.onConfigurationChanged(newConfig);
 		if (D)
-			Log.i(TAG, "***onConfigurationChanged***");
+			Log.i(TAG, "***Begin - onConfigurationChanged***");
 
 		drawerToggle.onConfigurationChanged(newConfig);
+
+		if (D)
+			Log.i(TAG, "***End - onConfigurationChanged");
 	}
 
 	@Override
@@ -269,14 +260,32 @@ public class MainActivity extends Activity implements
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (D)
+			Log.i(TAG, "Received Activity result: " + requestCode);
+
+		if (requestCode == MainActivity.REQUEST_NEWPARTY
+				&& resultCode == Activity.RESULT_OK) {
+			Party p = (Party) data
+					.getSerializableExtra(NewPartyActivity.KEY_PARTY);
+			if (D)
+				Log.i(TAG, "New Party added: " + p.getName());
+
+			drawerAdapter.updateSpinnerAdapter();
+			this.setCurrentParty(p);
+		}
+
+	}
+
 	public void settingsClicked() {
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
 				.setCustomAnimations(R.animator.slide_in_left,
 						R.animator.slide_out_right, R.animator.slide_in_right,
 						R.animator.slide_out_left)
-				.replace(R.id.frame_container, new SettingsFragment(),
-						KEY_FRAGMENT).addToBackStack(null).commit();
+				.replace(R.id.frame_container, new SettingsFragment())
+				.addToBackStack(null).commit();
 
 		if (D)
 			Log.i(TAG, "Fragment Change: Settings");
@@ -285,6 +294,11 @@ public class MainActivity extends Activity implements
 	public void startChecklistActivity() {
 		Intent i = new Intent(this, ChecklistActivity.class);
 		this.startActivity(i);
+	}
+
+	private void startNewPartyActivity() {
+		Intent i = new Intent(this, NewPartyActivity.class);
+		this.startActivityForResult(i, MainActivity.REQUEST_NEWPARTY);
 	}
 
 	private ArrayList<ListItem> getDrawerItemsArray() {

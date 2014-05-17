@@ -11,5 +11,14 @@
             android:summary="@string/pref_language_summary"
             android:title="@string/pref_language_title" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:summary="@string/pref_notifications_cat_summary"
+        android:title="@string/pref_notifications_cat_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_notifications"
+            android:summary="@string/pref_notifications_summary"
+            android:title="@string/pref_notifications_title" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -13,6 +13,8 @@
         android:icon="@drawable/seelenbohrer"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <receiver android:name=".notifications.NotificationTimeBroadcastReiceiver" />
+
         <activity
             android:name="org.kjg.garderobe.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"

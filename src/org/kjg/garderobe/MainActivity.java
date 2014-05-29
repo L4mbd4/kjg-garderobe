@@ -8,12 +8,15 @@ import org.kjg.garderobe.NavigationDrawer.EntryItem;
 import org.kjg.garderobe.NavigationDrawer.HeaderItem;
 import org.kjg.garderobe.NavigationDrawer.ListItem;
 import org.kjg.garderobe.NavigationDrawer.SpinnerItem;
+import org.kjg.garderobe.notifications.NotificationTimeBroadcastReiceiver;
 
 import Model.Party;
 import Model.Serializer;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -34,7 +37,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements
 		OnSharedPreferenceChangeListener {
-	private final boolean D = false;
+	private final boolean D = true;
 	private final String TAG = "Main";
 
 	private ListView drawerListView;
@@ -43,8 +46,10 @@ public class MainActivity extends Activity implements
 
 	private Party currentParty;
 	private DrawerEntryAdapter drawerAdapter;
+	private SharedPreferences prefs;
 
 	public static final String KEY_PREF_LOCALE = "locale";
+	public static final String KEY_PREF_ENABLE_NOTIFICATIONS = "enable_notifications";
 	private static final int REQUEST_NEWPARTY = 1;
 
 	public Party getCurrentParty() {
@@ -63,6 +68,33 @@ public class MainActivity extends Activity implements
 		this.currentParty = currentParty;
 		this.getActionBar().setTitle(this.currentParty.getName());
 		drawerAdapter.setSpinnerPartyActive(currentParty.getName());
+
+		// set Notification Timer
+		if (prefs == null) {
+			prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		}
+		if (prefs.getBoolean(KEY_PREF_ENABLE_NOTIFICATIONS, true)) {
+			setNotificationAlarm();
+		}
+
+	}
+
+	private void setNotificationAlarm() {
+		AlarmManager aManager = (AlarmManager) this
+				.getSystemService(ALARM_SERVICE);
+
+		Intent intent = new Intent(this,
+				NotificationTimeBroadcastReiceiver.class);
+		PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent,
+				PendingIntent.FLAG_ONE_SHOT);
+
+		aManager.cancel(pIntent);
+
+		aManager.set(AlarmManager.RTC_WAKEUP, getCurrentParty().getDate()
+				.getTimeInMillis(), pIntent);
+
+		if (D)
+			Log.i(TAG, "Notification Alarm set");
 	}
 
 	public void saveCurrentParty() {
@@ -105,6 +137,15 @@ public class MainActivity extends Activity implements
 					getBaseContext().getResources().getDisplayMetrics());
 			if (D)
 				Log.i(TAG, "Set locale to '" + locale + "'");
+		}
+
+		// Notifications
+		if (prefs.getBoolean(KEY_PREF_ENABLE_NOTIFICATIONS, true)) {
+			if (D)
+				Log.i(TAG, "Notifications enabled");
+		} else {
+			if (D)
+				Log.i(TAG, "Notifications disabled");
 		}
 
 		// Navigation drawer

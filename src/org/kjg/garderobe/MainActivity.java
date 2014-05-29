@@ -1,6 +1,9 @@
 package org.kjg.garderobe;
 
+import static ch.lambdaj.Lambda.join;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 import org.kjg.garderobe.NavigationDrawer.DrawerEntryAdapter;
@@ -10,6 +13,7 @@ import org.kjg.garderobe.NavigationDrawer.ListItem;
 import org.kjg.garderobe.NavigationDrawer.SpinnerItem;
 import org.kjg.garderobe.notifications.NotificationTimeBroadcastReiceiver;
 
+import Model.CloakroomShift;
 import Model.Party;
 import Model.Serializer;
 import android.app.Activity;
@@ -50,6 +54,10 @@ public class MainActivity extends Activity implements
 
 	public static final String KEY_PREF_LOCALE = "locale";
 	public static final String KEY_PREF_ENABLE_NOTIFICATIONS = "enable_notifications";
+	public static final String KEY_PREF_ENABLE_NOTIFICATION_VIBRATION = "enable_notification_vibration";
+	public static final String KEY_PREF_ENABLE_NOTIFICATION_SOUND = "enable_notification_sound";
+	public static final String KEY_PREF_NOTIFICATION_SOUND_URI = "notification_sound";
+
 	private static final int REQUEST_NEWPARTY = 1;
 
 	public Party getCurrentParty() {
@@ -83,12 +91,49 @@ public class MainActivity extends Activity implements
 		AlarmManager aManager = (AlarmManager) this
 				.getSystemService(ALARM_SERVICE);
 
+		CloakroomShift currentShift = null;
+		for (CloakroomShift s : getCurrentParty().getSchedule()) {
+			Calendar curr = Calendar.getInstance();
+			if (curr.getTimeInMillis() > s.getStart().getTimeInMillis()
+					&& curr.getTimeInMillis() < s.getEnd().getTimeInMillis()) {
+				// shift is running
+				currentShift = s;
+				break;
+			}
+		}
+
 		Intent intent = new Intent(this,
 				NotificationTimeBroadcastReiceiver.class);
+
+		// Use vibration
+		intent.putExtra(
+				NotificationTimeBroadcastReiceiver.KEY_EXTRA_USE_VIBRATION,
+				prefs.getBoolean(KEY_PREF_ENABLE_NOTIFICATION_VIBRATION, true));
+		// Sound
+		intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_USE_SOUND,
+				prefs.getBoolean(KEY_PREF_ENABLE_NOTIFICATION_SOUND, false));
+		intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_SOUND_URI,
+				prefs.getString(KEY_PREF_NOTIFICATION_SOUND_URI, ""));
+
+		// Title
+		intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_TITLE,
+				String.format(
+						getResources().getString(R.string.notification_title),
+						currentShift.getNumber()));
+		// Content
+		String members = "";
+		if (currentShift.getMembers().length > 0) {
+			members = join(currentShift.getMembers());
+		} else {
+			members = getResources().getString(R.string.no_members);
+		}
+		intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_CONTENT,
+				members);
+
 		PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent,
 				PendingIntent.FLAG_ONE_SHOT);
 
-		aManager.cancel(pIntent);
+		// aManager.cancel(pIntent);
 
 		aManager.set(AlarmManager.RTC_WAKEUP, getCurrentParty().getDate()
 				.getTimeInMillis(), pIntent);

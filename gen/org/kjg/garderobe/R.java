@@ -67,14 +67,15 @@ public final class R {
         public static final int ic_action_undo=0x7f02000a;
         public static final int ic_drawer=0x7f02000b;
         public static final int ic_launcher=0x7f02000c;
-        public static final int ok=0x7f02000d;
-        public static final int person=0x7f02000e;
-        public static final int popup_bg=0x7f02000f;
-        public static final int seelenbohrer=0x7f020010;
-        public static final int steffen=0x7f020011;
-        public static final int undo_btn_bg=0x7f020012;
-        public static final int undo_btn_bg_focused=0x7f020013;
-        public static final int undo_btn_bg_pressed=0x7f020014;
+        public static final int ic_seelenbohrer_notification=0x7f02000d;
+        public static final int ok=0x7f02000e;
+        public static final int person=0x7f02000f;
+        public static final int popup_bg=0x7f020010;
+        public static final int seelenbohrer=0x7f020011;
+        public static final int steffen=0x7f020012;
+        public static final int undo_btn_bg=0x7f020013;
+        public static final int undo_btn_bg_focused=0x7f020014;
+        public static final int undo_btn_bg_pressed=0x7f020015;
     }
     public static final class id {
         public static final int action_add_bag=0x7f0d0036;
@@ -218,10 +219,17 @@ public final class R {
         public static final int no_members=0x7f090021;
         public static final int no_numOrBags=0x7f090026;
         public static final int no_party=0x7f090025;
+        public static final int notification_title=0x7f09005c;
         public static final int pref_language_summary=0x7f090051;
         public static final int pref_language_title=0x7f090050;
         public static final int pref_locale_cat_summary=0x7f09004f;
         public static final int pref_locale_cat_title=0x7f09004e;
+        public static final int pref_notification_sound_summary=0x7f090059;
+        public static final int pref_notification_sound_title=0x7f090058;
+        public static final int pref_notification_sound_uri_summary=0x7f09005b;
+        public static final int pref_notification_sound_uri_title=0x7f09005a;
+        public static final int pref_notification_vibrate_title=0x7f090056;
+        public static final int pref_notification_vibration_summary=0x7f090057;
         public static final int pref_notifications_cat_summary=0x7f090052;
         public static final int pref_notifications_cat_title=0x7f090053;
         public static final int pref_notifications_summary=0x7f090054;
@@ -234,7 +242,7 @@ public final class R {
         public static final int reason_mistake=0x7f090039;
         public static final int reason_other=0x7f09003a;
         public static final int reason_wrong=0x7f09003c;
-        public static final int restarting=0x7f090056;
+        public static final int restarting=0x7f09005d;
         public static final int shift_detail_bags=0x7f090024;
         public static final int shift_detail_members=0x7f090022;
         public static final int shift_detail_numbers=0x7f090023;
@@ -253,8 +261,8 @@ public final class R {
         public static final int text_txt_numbag_time=0x7f09001c;
         public static final int title_activity_add_bag=0x7f090002;
         public static final int title_activity_add_number=0x7f090001;
-        public static final int title_activity_checklist=0x7f090057;
-        public static final int title_activity_new_party=0x7f090058;
+        public static final int title_activity_checklist=0x7f09005e;
+        public static final int title_activity_new_party=0x7f09005f;
         public static final int title_new_party=0x7f090027;
         public static final int toast_party_deleted=0x7f09002a;
         public static final int toast_party_selected=0x7f090029;

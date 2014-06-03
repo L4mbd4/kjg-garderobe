@@ -10,9 +10,11 @@ import org.kjg.garderobe.R;
 import Model.CloakroomShift;
 import Model.Party;
 import Model.Serializer;
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +22,12 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class NotificationTimeBroadcastReiceiver extends BroadcastReceiver {
 	private static final boolean D = true;
 	private static final String TAG = "NotificationReceiver";
@@ -39,12 +43,16 @@ public class NotificationTimeBroadcastReiceiver extends BroadcastReceiver {
 	public void onReceive(Context c, Intent i) {
 		if (D) {
 			Log.i(TAG, "Broadcast received");
+			Log.i(TAG,
+					"Cancel: "
+							+ i.getBooleanExtra(KEY_EXTRA_CANCEL_NOTIFICATION,
+									false));
 		}
 
 		notificationManager = (NotificationManager) c
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		if (i.getBooleanExtra(KEY_EXTRA_CANCEL_NOTIFICATION, false)) {
+		if (!i.getBooleanExtra(KEY_EXTRA_CANCEL_NOTIFICATION, false)) {
 			// show notification
 			notificationManager.notify(NOTIFICATION_ID_SHIFT,
 					buildNotification(c, i.getStringExtra(KEY_EXTRA_PARTY)));
@@ -105,6 +113,15 @@ public class NotificationTimeBroadcastReiceiver extends BroadcastReceiver {
 		builder.setContentText(content);
 		builder.setAutoCancel(false);
 		builder.setOngoing(true);
+
+		Intent contentIntent = new Intent(c, MainActivity.class);
+		TaskStackBuilder tsb = TaskStackBuilder.create(c);
+		tsb.addParentStack(MainActivity.class);
+		tsb.addNextIntent(contentIntent);
+		PendingIntent pContentIntent = tsb.getPendingIntent(0,
+				PendingIntent.FLAG_UPDATE_CURRENT);
+
+		builder.setContentIntent(pContentIntent);
 
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(c);

@@ -203,23 +203,33 @@ public class NewPartyFragment extends Fragment {
 						NotificationTimeBroadcastReiceiver.KEY_EXTRA_PARTY,
 						p.getName());
 
+				// set cancel false
+				intent.putExtra(
+						NotificationTimeBroadcastReiceiver.KEY_EXTRA_CANCEL_NOTIFICATION,
+						false);
+
 				PendingIntent pIntent = PendingIntent.getBroadcast(
-						getActivity(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+						getActivity(), (int) System.currentTimeMillis(),
+						intent, PendingIntent.FLAG_ONE_SHOT);
 
 				aManager.set(AlarmManager.RTC_WAKEUP, p.getSchedule().get(i)
 						.getStart().getTimeInMillis(), pIntent);
 
-				if (D)
+				if (D) {
 					Log.i(TAG, "Notification Alarm set for shift " + (i + 1));
+					Log.i(TAG,
+							"Time: "
+									+ String.format("%02d:%02d", p
+											.getSchedule().get(i).getStart()
+											.get(Calendar.HOUR_OF_DAY), p
+											.getSchedule().get(i).getStart()
+											.get(Calendar.MINUTE)));
+				}
 			}
 
 			// set time to cancel notifications
 			Intent intent = new Intent(getActivity(),
 					NotificationTimeBroadcastReiceiver.class);
-
-			// party name
-			intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_PARTY,
-					p.getName());
 
 			// cancel
 			intent.putExtra(
@@ -232,8 +242,17 @@ public class NewPartyFragment extends Fragment {
 			aManager.set(AlarmManager.RTC_WAKEUP, p.getSchedule().getLast()
 					.getEnd().getTimeInMillis(), pIntent);
 
-			if (D)
+			if (D) {
 				Log.i(TAG, "Cancel notifications Alarm set");
+				Log.i(TAG,
+						"Time: "
+								+ String.format(
+										"%02d:%02d",
+										p.getSchedule().getLast().getEnd()
+												.get(Calendar.HOUR_OF_DAY), p
+												.getSchedule().getLast()
+												.getEnd().get(Calendar.MINUTE)));
+			}
 		}
 
 		Intent result = new Intent();

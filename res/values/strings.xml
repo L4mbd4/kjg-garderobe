@@ -95,6 +95,8 @@
     <string name="pref_notification_sound_uri_summary">Select sound for notifications</string>
     <string name="notification_title">Shift %s</string>
     <string name="restarting">Restarting&#8230;</string>
+    <string name="notification_action_number">Number</string>
+    <string name="notification_action_bag">Bag</string>
 
     <string-array name="pref_entries_language">
         <item>System default</item>

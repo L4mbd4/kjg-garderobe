@@ -27,6 +27,8 @@ public class AddNumbagActivity extends Activity {
 	public final static int GET_NUMBER = 1;
 	public final static int GET_BAG = 2;
 
+	public final static String KEY_EXTRA_MODE = "mode";
+
 	private EditText txt_number;
 	private EditText txt_comment;
 	private Spinner sp_reason;
@@ -56,7 +58,7 @@ public class AddNumbagActivity extends Activity {
 		this.btn_add = (Button) findViewById(R.id.btn_add_numbag_add);
 		this.btn_cancel = (Button) findViewById(R.id.btn_add_numbag_cancel);
 
-		mode = this.getIntent().getIntExtra("mode",
+		mode = this.getIntent().getIntExtra(KEY_EXTRA_MODE,
 				AddNumbagActivity.GET_NUMBER);
 		returnIntent = new Intent();
 		this.setResult(mode, returnIntent);

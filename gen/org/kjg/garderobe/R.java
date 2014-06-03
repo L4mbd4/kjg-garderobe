@@ -219,6 +219,8 @@ public final class R {
         public static final int no_members=0x7f090021;
         public static final int no_numOrBags=0x7f090026;
         public static final int no_party=0x7f090025;
+        public static final int notification_action_bag=0x7f09005f;
+        public static final int notification_action_number=0x7f09005e;
         public static final int notification_title=0x7f09005c;
         public static final int pref_language_summary=0x7f090051;
         public static final int pref_language_title=0x7f090050;
@@ -261,8 +263,8 @@ public final class R {
         public static final int text_txt_numbag_time=0x7f09001c;
         public static final int title_activity_add_bag=0x7f090002;
         public static final int title_activity_add_number=0x7f090001;
-        public static final int title_activity_checklist=0x7f09005e;
-        public static final int title_activity_new_party=0x7f09005f;
+        public static final int title_activity_checklist=0x7f090060;
+        public static final int title_activity_new_party=0x7f090061;
         public static final int title_new_party=0x7f090027;
         public static final int toast_party_deleted=0x7f09002a;
         public static final int toast_party_selected=0x7f090029;

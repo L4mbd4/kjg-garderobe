@@ -110,7 +110,7 @@ public class Serializer {
 		return pl.toArray(new Party[0]);
 	}
 
-	private static Party deserializeParty(String file, Context c) {
+	public static Party deserializeParty(String file, Context c) {
 		Party p = null;
 		try {
 			FileInputStream fis = c.openFileInput(file);

@@ -2,17 +2,24 @@ package org.kjg.garderobe;
 
 import java.util.Calendar;
 
+import org.kjg.garderobe.notifications.NotificationTimeBroadcastReiceiver;
+
 import Model.Party;
 import Model.Serializer;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +36,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class NewPartyFragment extends Fragment {
-	private final boolean D = false;
+	private final boolean D = true;
 	private final String TAG = "NewPartyFragment";
 
 	private Button btn_party_date;
@@ -177,6 +184,57 @@ public class NewPartyFragment extends Fragment {
 
 		// set new party as active
 		// ((MainActivity) getActivity()).setCurrentParty(p);
+
+		// set time for notifications
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+
+		if (prefs.getBoolean(MainActivity.KEY_PREF_ENABLE_NOTIFICATIONS, true)) {
+			AlarmManager aManager = (AlarmManager) getActivity()
+					.getSystemService(Context.ALARM_SERVICE);
+
+			// set notification for each shift
+			for (int i = 0; i < p.getShiftCount(); i++) {
+				Intent intent = new Intent(getActivity(),
+						NotificationTimeBroadcastReiceiver.class);
+
+				// party name
+				intent.putExtra(
+						NotificationTimeBroadcastReiceiver.KEY_EXTRA_PARTY,
+						p.getName());
+
+				PendingIntent pIntent = PendingIntent.getBroadcast(
+						getActivity(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+				aManager.set(AlarmManager.RTC_WAKEUP, p.getSchedule().get(i)
+						.getStart().getTimeInMillis(), pIntent);
+
+				if (D)
+					Log.i(TAG, "Notification Alarm set for shift " + (i + 1));
+			}
+
+			// set time to cancel notifications
+			Intent intent = new Intent(getActivity(),
+					NotificationTimeBroadcastReiceiver.class);
+
+			// party name
+			intent.putExtra(NotificationTimeBroadcastReiceiver.KEY_EXTRA_PARTY,
+					p.getName());
+
+			// cancel
+			intent.putExtra(
+					NotificationTimeBroadcastReiceiver.KEY_EXTRA_CANCEL_NOTIFICATION,
+					true);
+
+			PendingIntent pIntent = PendingIntent.getBroadcast(getActivity(),
+					0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+			aManager.set(AlarmManager.RTC_WAKEUP, p.getSchedule().getLast()
+					.getEnd().getTimeInMillis(), pIntent);
+
+			if (D)
+				Log.i(TAG, "Cancel notifications Alarm set");
+		}
 
 		Intent result = new Intent();
 		result.putExtra(NewPartyActivity.KEY_PARTY, p);

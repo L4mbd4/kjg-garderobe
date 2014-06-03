@@ -105,6 +105,8 @@ public class Party implements java.io.Serializable {
 	public void setTime(int h, int m) {
 		date.set(Calendar.HOUR_OF_DAY, h);
 		date.set(Calendar.MINUTE, m);
+		date.set(Calendar.SECOND, 0);
+		date.set(Calendar.MILLISECOND, 0);
 
 		updateShifts();
 	}

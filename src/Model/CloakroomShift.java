@@ -61,6 +61,8 @@ public class CloakroomShift implements java.io.Serializable {
 
 	public void setStart(Calendar start) {
 		this.start = start;
+		this.start.set(Calendar.SECOND, 0);
+		this.start.set(Calendar.MILLISECOND, 0);
 	}
 
 	public Calendar getEnd() {
@@ -69,6 +71,8 @@ public class CloakroomShift implements java.io.Serializable {
 
 	public void setEnd(Calendar end) {
 		this.end = end;
+		this.end.set(Calendar.SECOND, 0);
+		this.end.set(Calendar.MILLISECOND, 0);
 	}
 
 	public int getNumber() {

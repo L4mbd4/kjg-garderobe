@@ -4,7 +4,6 @@ import static ch.lambdaj.Lambda.join;
 
 import java.util.Calendar;
 
-import org.kjg.garderobe.AddNumbagActivity;
 import org.kjg.garderobe.MainActivity;
 import org.kjg.garderobe.R;
 
@@ -150,25 +149,23 @@ public class NotificationTimeBroadcastReiceiver extends BroadcastReceiver {
 
 		// action buttons
 		// add number button
-		Intent numberIntent = new Intent(c, AddNumbagActivity.class);
-		numberIntent.putExtra(AddNumbagActivity.KEY_EXTRA_MODE,
-				AddNumbagActivity.GET_NUMBER);
-
-		builder.addAction(
-				R.drawable.ic_action_new,
-				c.getResources().getString(R.string.notification_action_number),
-				PendingIntent.getActivity(c, (int) System.currentTimeMillis(),
-						numberIntent, PendingIntent.FLAG_UPDATE_CURRENT));
-
-		// add bag button
-		Intent bagIntent = new Intent(c, AddNumbagActivity.class);
-		bagIntent.putExtra(AddNumbagActivity.KEY_EXTRA_MODE,
-				AddNumbagActivity.GET_BAG);
-
-		builder.addAction(R.drawable.ic_action_new,
-				c.getResources().getString(R.string.notification_action_bag),
-				PendingIntent.getActivity(c, (int) System.currentTimeMillis(),
-						bagIntent, PendingIntent.FLAG_UPDATE_CURRENT));
+		// Intent numberIntent = new Intent(c, AddNumbagActivity.class);
+		// numberIntent.putExtra(AddNumbagActivity.KEY_EXTRA_MODE,
+		// AddNumbagActivity.GET_NUMBER);
+		//
+		// builder.addAction(
+		// R.drawable.ic_action_new,
+		// c.getResources().getString(R.string.notification_action_number),
+		// PendingIntent.getActivity(c, (int) System.currentTimeMillis(),
+		// numberIntent, PendingIntent.FLAG_UPDATE_CURRENT));
+		//
+		// // add bag button
+		// Intent bagIntent = new Intent(c, AddNumbagActivity.class);
+		//
+		// builder.addAction(R.drawable.ic_action_new,
+		// c.getResources().getString(R.string.notification_action_bag),
+		// PendingIntent.getActivity(c, (int) System.currentTimeMillis(),
+		// bagIntent, PendingIntent.FLAG_UPDATE_CURRENT));
 
 		return builder.build();
 	}

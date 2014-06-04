@@ -12,7 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class SettingsFragment extends PreferenceFragment {
-	private final boolean D = true;
+	private final boolean D = false;
 	private final String TAG = "SettingsFragment";
 
 	@Override

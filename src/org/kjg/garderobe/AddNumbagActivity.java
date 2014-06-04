@@ -21,7 +21,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class AddNumbagActivity extends Activity {
-	private final boolean D = false;
+	private final boolean D = true;
 	private final String TAG = "NumBagActivity";
 
 	public final static int GET_NUMBER = 1;
